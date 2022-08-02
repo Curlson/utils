@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON解析</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        html {
+            font-size: 14px;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        #container {
+            display: flex;
+        }
+        .btn-wraper{
+            text-align: right;
+            margin-left: 1rem;
+        }
+
+        .btn {
+            border-radius: 5px;
+            /* line-height: rem; */
+            padding: 0 .5rem;
+            font-size: 1.2rem;
+            font-weight: 100;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            color: #333;
+            border-color: #09f;
+        }
+
+        #container>div {
+            font-family: "DejaVu Sans Mono", "Courier New", monospace;
+            padding: 10px;
+        }
+       
+
+        #right-wraper .property {
+            color: #204a87;
+        }
+
+        #right-wraper {
+            font-size: 1.2rem;
+            color: #4e9a06;
+            line-height: 1.5rem;
+        }
+
+        #right-wraper .string {
+            color: #4e9a06;
+        }
+
+        #right-wraper .warning {
+            color: red;
+            font-size: 2rem;
+            line-height: 3rem;
+        }
+
+        #right-wraper .sep {
+            padding-right: 10px;
+            color: #333;
+        }
+
+        #right-wraper .txt-1 {
+            font-size: 1.5rem;
+            line-height: 2.2rem;
+            background-color: #cff5ff;
+            box-shadow: 0 0 0 1px #09f;
+            color: #333;
+            padding: 0 .25rem;
+            border-radius: 3px;
+        }
+        .footer{
+            justify-content: right;
+            display: flex;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="left-wraper">
+            <h3>
+                <label for="json-content">内容</label>
+            </h3>
+            <textarea name="json-content" id="json-content" cols="80"
+                rows="50">{"level":"ERROR","ts":"2022-08-01T17:12:38.719+0800","caller":"server/kernal.go:104","msg":"[Recovery from panic]","error":"runtime error: invalid memory address or nil pointer dereference","request":"GET /api/app?page=1&page_size=15 HTTP/1.1\r\nHost: localhost:9000\r\nAccept: application/json, text/plain, */*\r\nAccept-Encoding: gzip, deflate, br\r\nAccept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6\r\nConnection: keep-alive\r\nCookie: session_id=MTY1OTMzMzY5OHxOd3dBTkVaVFZqTkdXVFpZTWpOWlR6UXlNall6UjFOTFNVazNWbEpUTWpSWVVsSk5TRGMwVHpkUE0wcFJSMUV5VUZFMU4xbEJVbEU9fD8I_-uIOmta4PJRbL0_WwqF5n_ffQyhNFn0cPGCLVQf\r\nReferer: http://localhost:9000/\r\nSec-Ch-Ua: \" Not;A Brand\";v=\"99\", \"Microsoft Edge\";v=\"103\", \"Chromium\";v=\"103\"\r\nSec-Ch-Ua-Mobile: ?0\r\nSec-Ch-Ua-Platform: \"Windows\"\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: same-origin\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.71\r\n\r\n","stack":"goroutine 10 [running]:\nruntime/debug.Stack()\n\tE:/Scoop/Scoop/apps/go/current/src/runtime/debug/stack.go:24 +0x65\ngdoor/internal/server.ginRecovery.func1.1()\n\tD:/golang/gdoor/internal/server/kernal.go:108 +0x505\npanic({0xbd8060, 0x1884340})\n\tE:/Scoop/Scoop/apps/go/current/src/runtime/panic.go:838 +0x207\ngorm.io/gorm.(*Statement).QuoteTo(0x0, {0x138ca38, 0xc0001480c0}, {0xb973a0?, 0xc0005b20d0?})\n\tD:/gopath/pkg/mod/gorm.io/gorm@v1.23.5/statement.go:141 +0x611\ngorm.io/gorm.(*Statement).Quote(...)\n\tD:/gopath/pkg/mod/gorm.io/gorm@v1.23.5/statement.go:159\ngorm.io/gorm.(*DB).Table(0x2835f14ffff?, {0xcaf81c, 0x6}, {0x0, 0x0, 0x0})\n\tD:/gopath/pkg/mod/gorm.io/gorm@v1.23.5/chainable_api.go:58 +0x2c6\ngdoor/app/modules/admin/http/controller.(*appController).Index(0x2?, 0xc000494100)\n\tD:/golang/gdoor/app/modules/admin/http/controller/app_controller.go:24 +0x6d\ngithub.com/gin-gonic/gin.(*Context).Next(...)\n\tD:/gopath/pkg/mod/github.com/gin-gonic/gin@v1.7.7/context.go:168\ngdoor/internal/server.ginRecovery.func1(0xc000494100)\n\tD:/golang/gdoor/internal/server/kernal.go:120 +0x88\ngithub.com/gin-gonic/gin.(*Context).Next(...)\n\tD:/gopath/pkg/mod/github.com/gin-gonic/gin@v1.7.7/context.go:168\ngdoor/internal/server.ginLogger.func1(0xc000494100)\n\tD:/golang/gdoor/internal/server/kernal.go:63 +0xb1\ngithub.com/gin-gonic/gin.(*Context).Next(...)\n\tD:/gopath/pkg/mod/github.com/gin-gonic/gin@v1.7.7/context.go:168\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000484b60, 0xc000494100)\n\tD:/gopath/pkg/mod/github.com/gin-gonic/gin@v1.7.7/gin.go:555 +0x671\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000484b60, {0x138e770?, 0xc0005cc000}, 0xc000450100)\n\tD:/gopath/pkg/mod/github.com/gin-gonic/gin@v1.7.7/gin.go:511 +0x1d2\nnet/http.serverHandler.ServeHTTP({0xc000095b00?}, {0x138e770, 0xc0005cc000}, 0xc000450100)\n\tE:/Scoop/Scoop/apps/go/current/src/net/http/server.go:2916 +0x43b\nnet/http.(*conn).serve(0xc0000808c0, {0x138f480, 0xc000401bf0})\n\tE:/Scoop/Scoop/apps/go/current/src/net/http/server.go:1966 +0x5d7\ncreated by net/http.(*Server).Serve\n\tE:/Scoop/Scoop/apps/go/current/src/net/http/server.go:3071 +0x4db\n"}</textarea>
+
+                <div class="footer">
+                    
+                    <div>
+                        <label for="name">名称</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class="btn-wraper">
+                        <button class="btn btn-primary" id="btn-parse">格式化</button>
+                    </div>
+                </div>
+        </div>
+        
+        <div id="right-wraper">
+            <div id="show"> </div>
+        </div>
+    </div>
+    <script>
+        // 获取内容
+        function getText(idSelector) {
+            let content = document.getElementById(idSelector);
+            return content.value;
+        }
+
+        function splitContent(sep, jsonStr) {
+            const obj = JSON.parse(jsonStr);
+            return obj
+        }
+
+        function getRegExpObj() {
+            let input =document.getElementById("name")
+            let name = input.value.trim()
+            if (name == "") {
+                return "";
+            }
+            // [\w|/|:]*gdoor\S*|gdoor(\S)*/g
+            let reg = new RegExp("[\\w|/|:]*"+name+"\\S*|"+name+"(\\S)", "g")
+            console.log("reg = ", reg);
+            return reg
+        }
+
+        function colorFormat(json, reg) {
+            let html = "<ul>"
+            for (let key in json) {
+                let classAttr = 'string';
+                let str = ''
+                if (reg!="" &&(key == 'stack' || key == 'request')) {
+                    str = json[key].replace(reg, function ($1) {
+                        return "<span class='txt-1'>" + $1 + "</span>";
+                    })
+                } else {
+                    str = json[key];
+                    if (key == 'error') {
+                        classAttr = 'warning';
+                    }
+                }
+
+                str = str.replace(/(\r)?\n/g, "<br/>")
+
+                html += "<li><span class='property'>\"" + key + "\"</span><span class='sep'>:</span><span class='" + classAttr + "'>\"" + str + "\"</span></li>"
+            }
+            html += "</ul>"
+            let ele = document.getElementById("show");
+            ele.innerHTML = html
+        }
+
+        let btn = document.getElementById("btn-parse");
+        let name = document.getElementById("name");
+        btn.onclick = function () {
+            let projectName = getRegExpObj()
+            colorFormat(splitContent('\n', getText('json-content')), projectName);
+        }
+
+       
+        // colorFormat(splitContent('\n',getText('json-content')));
+    </script>
+</body>
+
+</html>
